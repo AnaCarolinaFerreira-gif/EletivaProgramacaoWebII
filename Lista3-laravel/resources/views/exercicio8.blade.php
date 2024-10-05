@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercício 8</title>
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Calcular Área do Retângulo</h2>
+    <h2>Exercício 8: alcular Área do Retângulo</h2>
     <form action="/resultado-exercicio8" method="get">
         @csrf
         <div class="mb-3">

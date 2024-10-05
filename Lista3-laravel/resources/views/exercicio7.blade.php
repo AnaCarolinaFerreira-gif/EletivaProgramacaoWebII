@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercício 7</title>
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Converter Celsius para Fahrenheit</h2>
+    <h2>Exercício 7: Converter Celsius para Fahrenheit</h2>
     <form action="/resultado-exercicio7" method="get">
         @csrf
         <div class="mb-3">
