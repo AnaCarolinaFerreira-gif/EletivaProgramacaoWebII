@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Lista de Clientes Cadastrados</h2>
-<table>
-    <thead>
-        <tr>
+
+<div class="row">
+    <div class="col">
+    <h2>Lista de Clientes Cadastrados</h2>
+    <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+    <tr>
             <th>Nome</th>
             <th>Telefone</th>
         </tr>
@@ -15,12 +18,15 @@
             <td>{{ $cliente->nome }}</td>
             <td>{{ $cliente->telefone }}</td>
             <td>
-                <a href="{{ route('clientes.show', $clientes->id) }}">Ver</a>
-                <a href="{{ route('clientes.edit', $clientes->id) }}">Editar</a>
-                <a href="{{ route('clientes.delete', $clientes->id) }}">Excluir</a>
+                <a href="{{ route('clientes.show', $clientes->id) }}"  class="btn btn-sm btn-info">Ver</a>
+                <a href="{{ route('clientes.edit', $clientes->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{{ route('clientes.delete', $clientes->id) }}" class="btn btn-sm btn-danger">Excluir</a>
             </td>
         </tr>
         @endforeach
     </tbody>
-</table>
+    </table>
+    </div>
+</div>
+
 @endsection
