@@ -8,11 +8,17 @@
 <body>
 <div class="container mt-5">
 <h1>Exercício 12: Calcular Potência</h1>
-    <form action="/resultado-exercicio12" method="GET">
-        <label for="base">Base:</label>
-        <input type="number" name="base" required>
-        <label for="expoente">Expoente:</label>
-        <input type="number" name="expoente" required>
+    <form class="row" action="/resultado-exercicio12" method="POST">
+    @csrf
+    @method('GET')
+    <div class="col mb-3">
+        <label class="form-label"for="base">Base:</label>
+        <input class="form-label" type="number" name="base" required>
+</div>
+        <div class="col mb-3">
+        <label class="form-label" for="expoente">Expoente:</label>
+        <input class="form-label" type="number" name="expoente" required>
+</div>
         <button type="submit">Calcular</button>
     </form>
 </div>

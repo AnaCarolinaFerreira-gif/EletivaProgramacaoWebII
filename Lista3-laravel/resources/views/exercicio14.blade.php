@@ -8,9 +8,13 @@
 <body>
 <div class="container mt-5">
 <h1>Exercício 14: Converter Milhas</h1>
-    <form action="/resultado-exercicio14" method="GET">
-        <label for="milhas">Milhas:</label>
-        <input type="number" name="milhas" required>
+    <form class="row" action="/resultado-exercicio14" method="POST">
+    @csrf
+    @method('GET')
+    <div class="col mb-3">
+        <label class="form-label" for="milhas">Milhas:</label>
+        <input class="form-label" type="number" name="milhas" required>
+</div>
         <button type="submit">Converter</button>
     </form>
 </div>

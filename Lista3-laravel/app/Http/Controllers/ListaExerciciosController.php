@@ -275,5 +275,33 @@ class ListaExerciciosController extends Controller {
         return view("exercicio19");
     }
 
+    public function conversorDateTime(Request $request)
+    {
+        $dias = $request->input("dia");
+
+        $segundos = $dias * 24 * 60 * 60;
+
+        $horas = floor($segundos / 3600); 
+        $minutos = floor($horas*60);
+        $segundosRestantes = $minutos * 60; 
+
+        return [
+            'horas' => $horas,
+            'minutos' => $minutos,
+            'segundos' => $segundosRestantes
+        ];
+    }
+  // Exercicio 20 
+  public function mostrarExercicio20() {
+    return view("exercicio20");
+}
+    public function calcularVelocidadeMedia(Request $request)
+    {
+        $distancia = $request->input("distancia");
+        $tempo = $request->input("temppo");
+
+        $velocidadeMedia = $distancia / $tempo;
+        return "A velocidade media perconrrendo" . $distancia . " distancia, em " . $tempo . "é " . $velocidadeMedia;
+    }
 
 }

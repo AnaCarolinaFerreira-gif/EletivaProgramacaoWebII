@@ -8,13 +8,21 @@
 <body>
 <div class="container mt-5">
 <h1>Exercício 17: Calcular Capital</h1>
-    <form action="{{ url('/resultado-exercicio17') }}" method="GET">
-        <label for="montante">Montante:</label>
-        <input type="number" name="montante" required>
-        <label for="taxa">Taxa (%):</label>
-        <input type="number" name="taxa" required>
-        <label for="tempo">Tempo (anos):</label>
-        <input type="number" name="tempo" required>
+    <form class="row" action="/resultado-exercicio17" method="POST">
+    @csrf
+    @method('GET')
+    <div class="col mb-3">
+        <label class="form-label" for="montante">Montante:</label>
+        <input class="form-label" type="number" name="montante" required>
+</div>
+        <div class="col mb-3">
+        <label class="form-label" for="taxa">Taxa (%):</label>
+        <input class="form-label" type="number" name="taxa" required>
+</div>
+<div class="col mb-3">
+        <label class="form-label" for="tempo">Tempo (anos):</label>
+        <input class="form-label" type="number" name="tempo" required>
+</div>
         <button type="submit">Calcular Capital</button>
     </form>
 </div>

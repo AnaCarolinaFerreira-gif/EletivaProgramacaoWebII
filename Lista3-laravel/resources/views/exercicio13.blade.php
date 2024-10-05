@@ -8,9 +8,13 @@
 <body>
 <div class="container mt-5">
 <h1>Exercício 13: Converter Centímetros</h1>
-    <form action="/resultado-exercicio13" method="GET">
-        <label for="centimetros">Centímetros:</label>
-        <input type="number" name="centimetros" required>
+    <form class="row" action="/resultado-exercicio13" method="POST">
+    @csrf
+    @method('GET')
+    <div class="col mb-3">
+        <label class="form-label"  for="centimetros">Centímetros:</label>
+        <input class="form-label" type="number" name="centimetros" required>
+</div>
         <button type="submit">Converter</button>
     </form>
 </div>

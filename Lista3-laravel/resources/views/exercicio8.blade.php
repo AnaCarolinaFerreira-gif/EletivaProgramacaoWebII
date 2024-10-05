@@ -8,13 +8,14 @@
 <body>
 <div class="container mt-5">
     <h2>Exercício 8: alcular Área do Retângulo</h2>
-    <form action="/resultado-exercicio8" method="get">
+    <form class="row" action="/resultado-exercicio8" method="POST">
         @csrf
-        <div class="mb-3">
+        @method('GET')
+        <div class="col mb-3">
             <label for="largura" class="form-label">Largura:</label>
             <input type="number" class="form-control" name="largura" required>
         </div>
-        <div class="mb-3">
+        <div class="col mb-3">
             <label for="altura" class="form-label">Altura:</label>
             <input type="number" class="form-control" name="altura" required>
         </div>

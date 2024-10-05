@@ -8,9 +8,10 @@
 <body>
 <div class="container mt-5">
     <h2>Exercício 9: Calcular Área do Círculo</h2>
-    <form action="/resultado-exercicio9" method="get">
+    <form class="row" action="/resultado-exercicio9" method="POST">
         @csrf
-        <div class="mb-3">
+        @method('GET')
+        <div class="col mb-3">
             <label for="raio" class="form-label">Raio:</label>
             <input type="number" class="form-control" name="raio" required>
         </div>

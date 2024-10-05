@@ -9,9 +9,10 @@
 
 <div class="container mt-5">
     <h2>Converter Fahrenheit para Celsius</h2>
-    <form action="/resultado-exercicio6" method="get">
+    <form class="row" action="/resultado-exercicio6" method="POST">
         @csrf
-        <div class="mb-3">
+        @method('GET')
+        <div class="col mb-3">
             <label for="fahrenheit" class="form-label">Temperatura em Fahrenheit:</label>
             <input type="number" class="form-control" name="fahrenheit" required>
         </div>

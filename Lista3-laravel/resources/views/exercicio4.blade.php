@@ -8,13 +8,14 @@
 <body>
 <div class="container mt-5">
     <h2>Divisão</h2>
-    <form action="/resultado-exercicio4" method="get">
+    <form class="row" action="/resultado-exercicio4" method="POST">
         @csrf
-        <div class="mb-3">
+        @method('GET')
+        <div class="col mb-3">
             <label for="valor-1" class="form-label">Valor 1:</label>
             <input type="number" class="form-control" name="valor-1" required>
         </div>
-        <div class="mb-3">
+        <div class="col mb-3">
             <label for="valor-2" class="form-label">Valor 2:</label>
             <input type="number" class="form-control" name="valor-2" required>
         </div>

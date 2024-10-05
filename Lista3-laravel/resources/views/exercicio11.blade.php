@@ -8,9 +8,13 @@
 <body>
 <div class="container mt-5">
     <h1>Exercício 11: Calcular Perímetro do Círculo</h1>
-    <form action="/resultado-exercicio11" method="GET">
-        <label for="raio">Raio:</label>
-        <input type="number" name="raio" required>
+    <form class="row" action="/resultado-exercicio11" method="POST">
+    @csrf
+    @method('GET')
+    <div class="col mb-3">
+        <label class="form-label" for="raio">Raio:</label>
+        <input class="form-label" type="number" name="raio" required>
+</div>
         <button type="submit">Calcular</button>
     </form>
 </div>

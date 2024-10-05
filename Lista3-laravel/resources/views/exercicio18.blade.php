@@ -8,13 +8,21 @@
 <body>
 <div class="container mt-5">
 <h1>Exercício 18: Calcular Juros Compostos</h1>
-    <form action="/resultado-exercicio18" method="GET">
-        <label for="capital">Capital:</label>
-        <input type="number" name="capital" required>
-        <label for="taxa">Taxa (%):</label>
-        <input type="number" name="taxa" required>
-        <label for="tempo">Tempo (anos):</label>
-        <input type="number" name="tempo" required>
+    <form class="row" action="/resultado-exercicio18" method="POST">
+    @csrf
+        @method('GET')
+        <div class="col mb-3">
+        <label class="form-label" for="capital">Capital:</label>
+        <input class="form-label" type="number" name="capital" required>
+</div>
+<div class="col mb-3">
+        <label class="form-label" for="taxa">Taxa (%):</label>
+        <input class="form-label" type="number" name="taxa" required>
+</div>
+<div class="col mb-3">
+        <label class="form-label" for="tempo">Tempo (anos):</label>
+        <input class="form-label" type="number" name="tempo" required>
+</div>
         <button type="submit">Calcular Juros Compostos</button>
     </form>
 </div>
