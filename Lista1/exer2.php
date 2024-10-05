@@ -1,41 +1,49 @@
+<?php
+if ($_POST) {
 
-<php?    
-    function calcular_bonus($funcionario_id, $mes, $ano) {
-    global $conn;
+    $horasTrabalhadas = $_POST['horasTrabalhadas'];
+    $valorHora = $_POST['valorHora'];
 
-    $sql = "SELECT nota_desempenho FROM desempenho WHERE funcionario_id = $funcionario_id AND mes = $mes AND ano = $ano";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $nota_desempenho = $row['nota_desempenho'];
+ 
+    function calcularSalarioSemanal($horasTrabalhadas, $valorHora) {
+    
+        $salarioMensal = $horasTrabalhadas * $valorHora;
 
-    $sql = "SELECT valor FROM lucros WHERE mes = $mes AND ano = $ano";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $valor_lucros = $row['valor'];
 
-    switch ($nota_desempenho) {
-        case 5:
-            $percentual_bonus = 10; // 10%
-            break;
-        case 4:
-            $percentual_bonus = 8;
-            break;
-        case 3:
-            $percentual_bonus = 5;
-            break;
-        case 2:
-            $percentual_bonus = 3;
-            break;
-        case 1:
-            $percentual_bonus = 0;
-            break;
-        default:
-            $percentual_bonus = 0;
+        $salarioSemanal = $salarioMensal / 4;
+
+        return $salarioSemanal;
     }
 
-    $valor_bonus = ($valor_lucros * $percentual_bonus) / 100;
-
-    return $valor_bonus;
+  
+    $salarioSemanal = calcularSalarioSemanal($horasTrabalhadas, $valorHora);
+    
+  
+    echo "Salário Semanal: R$ " . number_format($salarioSemanal, 2, ',', '.');
 }
+?>
 
 
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo do Salário Semanal</title>
+</head>
+<body>
+    <h1>Cálculo do Salário Semanal</h1>
+    <form action="calculo_salario.php" method="post">
+        <label for="horasTrabalhadas">Horas Trabalhadas no Mês:</label>
+        <input type="number" id="horasTrabalhadas" name="horasTrabalhadas" required>
+        <br><br>
+        
+        <label for="valorHora">Valor da Hora:</label>
+        <input type="number" id="valorHora" name="valorHora" required step="0.01">
+        <br><br>
+        
+        <input type="submit" value="Calcular Salário Semanal">
+    </form>
+</body>
+</html>

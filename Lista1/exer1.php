@@ -1,25 +1,55 @@
+<?php
+if ($_POST) {
+    $entrada = $_POST['entrada'];
+    $saida = $_POST['saida'];
 
-   <php?
-   function calcular_horas_e_salario($funcionario_id, $mes, $ano) {
-    global $conn;
-
-    $sql = "SELECT * FROM registros_ponto WHERE funcionario_id = $funcionario_id AND YEAR(data) = $ano AND MONTH(data) = $mes";
-    $result = $conn->query($sql);
-
-    $total_horas = 0;
-    while($row = $result->fetch_assoc()) {
-        $horas_trabalhadas = strtotime($row['hora_saida']) - strtotime($row['hora_entrada']);
-        $horas_trabalhadas = round($horas_trabalhadas / 3600, 2); 
-
-        $total_horas += $horas_trabalhadas;
+    function calcularHorasTrabalhadas($entrada, $saida) {
+        $entradaTimestamp = strtotime($entrada);
+        $saidaTimestamp = strtotime($saida);
+        
+        if ($saidaTimestamp < $entradaTimestamp) {
+            return "Erro: O horário de saída deve ser posterior ao horário de entrada.";
+        }
+        
+        $diferencaSegundos = $saidaTimestamp - $entradaTimestamp;
+        
+        $horasTrabalhadas = $diferencaSegundos / 3600;
+        
+        return $horasTrabalhadas;
     }
+
+    $horasTrabalhadas = calcularHorasTrabalhadas($entrada, $saida);
     
-    $sql = "SELECT valor_hora FROM funcionarios WHERE id = $funcionario_id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $valor_hora = $row['valor_hora'];
-
-    $salario = $total_horas * $valor_hora;
-
-    return array('total_horas' => $total_horas, 'salario' => $salario);}
+    if (is_numeric($horasTrabalhadas)) {
+        echo "Total de horas trabalhadas: " . $horasTrabalhadas . " horas";
+    } else {
+        echo $horasTrabalhadas; // Exibe a mensagem de erro
+    }
+}
 ?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Horas Trabalhadas</title>
+</head>
+<body>
+    <h1>Registro de Horas Trabalhadas</h1>
+    <form action="calculo_horas.php" method="post">
+        <label for="entrada">Horário de Entrada:</label>
+        <input type="time" id="entrada" name="entrada" required>
+        <br><br>
+        
+        <label for="saida">Horário de Saída:</label>
+        <input type="time" id="saida" name="saida" required>
+        <br><br>
+        
+        <input type="submit" value="Calcular Horas Trabalhadas">
+    </form>
+</body>
+</html>
