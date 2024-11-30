@@ -5,6 +5,9 @@
 <div class="row">
     <div class="col">
     <h2>Lista de Clientes Cadastrados</h2>
+         <a class="btn btn-success" href="{{route('clientes.create')}}">
+        Inserir novo Cliente
+    </a>
     <table class="table table-striped table-hover">
     <thead class="thead-dark">
     <tr>
