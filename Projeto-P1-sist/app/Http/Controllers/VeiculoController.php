@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Veiculos;
 use Illuminate\Http\Request;
 
 class VeiculoController extends Controller
@@ -11,7 +12,8 @@ class VeiculoController extends Controller
      */
     public function index()
     {
-        //
+        $veiculos = Veiculos::all();
+        return view('veiculos.index', compact('veiculos'));
     }
 
     /**
@@ -19,7 +21,7 @@ class VeiculoController extends Controller
      */
     public function create()
     {
-        //
+        return view('veiculos.create');
     }
 
     /**
@@ -27,7 +29,12 @@ class VeiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+
+        Veiculos::create($request->all());
+        
+        return redirect()->route('veiculos.index')
+                        ->with('sucess', 'Carro Cadastrado');
     }
 
     /**
@@ -35,7 +42,8 @@ class VeiculoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $veiculos = Veiculos::findOrFail($id);
+        return view('veiculos.show', compact('veiculos'));
     }
 
     /**
@@ -43,7 +51,8 @@ class VeiculoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $veiculos = Veiculos::findOrFail($id);
+        return view('veiculos.edit', compact('veiculos'));
     }
 
     /**
@@ -51,7 +60,12 @@ class VeiculoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $veiculos = Veiculos::findOrFail($id);
+        $veiculos->update($request->all());
+        
+        return redirect()->route('veiculos.index')
+                        ->with('success', 'Carro atualizado com sucesso');
     }
 
     /**
@@ -59,6 +73,7 @@ class VeiculoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $veiculos = Veiculos::findOrFail($id);
+        return view('veiculos.delete', compact('veiculo'));
     }
 }
