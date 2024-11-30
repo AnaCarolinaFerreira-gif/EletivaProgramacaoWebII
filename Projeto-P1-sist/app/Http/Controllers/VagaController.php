@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clientes;
+use App\Models\Vagas;
+use App\Models\Veiculos;
 use Illuminate\Http\Request;
 
 class VagaController extends Controller
@@ -11,15 +14,18 @@ class VagaController extends Controller
      */
     public function index()
     {
-        //
+        $vagas = Vagas::with('clientes')->with('veiculos')->get();
+        return view('vagas.index', compact('vagas'));
     }
-
+  
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $veiculos = Veiculos::all();
+        $clientes = Clientes::all();
+        return view('vagas.create', compact('veiculos','clientes'));
     }
 
     /**
@@ -27,7 +33,9 @@ class VagaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Vagas::create($request->all());
+        
+        return redirect('vagas.index');
     }
 
     /**
@@ -35,7 +43,8 @@ class VagaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $vagas = Vagas::with('clientes')->with('veiculos')->findOrFail($id);
+        return view('vagas.show', compact('vagas'));
     }
 
     /**
@@ -43,7 +52,11 @@ class VagaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $vagas = Vagas::with('clientes')->with('veiculos')->findOrFail($id);
+        $veiculos = Veiculos::all();
+        $clientes = Clientes::all();
+
+        return view('vagas.edit', compact('vagas', 'veiculos', 'clientes'));
     }
 
     /**
@@ -51,7 +64,10 @@ class VagaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $vagas = Vagas::findOrFail($id);
+        $vagas->update($request->all());
+        
+        return redirect()->route('vagas.index');
     }
 
     /**
@@ -59,6 +75,10 @@ class VagaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vagas = Vagas::findOrFail($id);
+        $vagas->delete();
+
+        return redirect()->route('vagas.index');
     }
+    
 }
