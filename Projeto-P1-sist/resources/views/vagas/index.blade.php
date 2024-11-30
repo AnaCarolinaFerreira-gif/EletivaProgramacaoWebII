@@ -6,6 +6,9 @@
 <div class="row">
     <div class="col">
     <h2>Lista de Vagas </h2>
+         <a class="btn btn-success" href="{{route('vagas.create')}}">
+        Inserir nova vaga
+    </a>
     <table class="table table-striped table-hover">
     <thead class="thead-dark">
     <tr>
