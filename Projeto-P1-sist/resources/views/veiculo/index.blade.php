@@ -5,6 +5,9 @@
 
 <div class="row">
     <div class="col">
+        <a class="btn btn-success" href="{{route('veiculos.create')}}">
+        Inserir novo veiculo
+    </a>
     <h2>Lista de Veiculos</h2>
     <table class="table table-striped table-hover">
     <thead class="thead-dark">
