@@ -14,7 +14,14 @@ return new class extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->id();
             $table->boolean("ocupado");
-            $table->foreignId("veiculo_id");
+            $table->foreignId("veiculo_id")
+                    ->references('id')
+                    ->on("veiculos",)
+                    ->onDelete("restrict");
+            $table->foreignId("clientes_id")
+                    ->references('id')
+                    ->on("clientes",)
+                    ->onDelete("restrict");
             $table->dateTime("hora_entrada")->useCurrent();
             $table->string("hora_saida")->useCurrent();
             $table->timestamps();
