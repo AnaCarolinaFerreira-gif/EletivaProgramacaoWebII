@@ -15,11 +15,6 @@ return new class extends Migration
             $table->bigIncrements("placa")->primary()->autoimcrement();
             $table->string("modelo",120);
             $table->string("cor",120);
-            $table->foreignId("cliente_id");
-            $table->foreignId("clientes_id")
-                    ->references('id')
-                    ->on("clientes",)
-                    ->onDelete("restrict");
             $table->timestamps();
         });
     }
